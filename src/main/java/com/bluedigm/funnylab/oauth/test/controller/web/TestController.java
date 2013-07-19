@@ -1,0 +1,22 @@
+package com.bluedigm.funnylab.oauth.test.controller.web;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+@RequestMapping(value = "/test")
+public class TestController {
+
+	@RequestMapping("/testPage")
+	public ModelAndView getTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		
+		ModelAndView mav = new ModelAndView("/test/test");
+		return mav;
+	}
+}

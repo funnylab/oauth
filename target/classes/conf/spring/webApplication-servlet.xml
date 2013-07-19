@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util-3.1.xsd
+http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+http://www.springframework.org/schema/oxm 
+http://www.springframework.org/schema/oxm/spring-oxm-3.1.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
+	default-autowire="byName">
+
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	
+	<!-- Exception Resolver -->
+	<!-- 
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.skp.openplatform.core.framework.exception.ApplicationException">error/applicationException</prop>
+			</props>
+		</property>
+		<property name="exceptionAttribute" value="exception" />
+		<property name="defaultErrorView" value="error/error" />
+	</bean>
+	-->
+	<!-- 정규표현식을 이용하여 Web 관련 Controller만 적용한다. -->
+	<context:component-scan base-package="com.bluedigm.funnylab.oauth">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="regex" expression="^com\.bluedigm\.funnylab\.oauth\.[a-zA-Z\.]*\.controller.rest\.[a-zA-Z\.]*" />
+	</context:component-scan>
+
+	<!-- VIEW RESOLVER CONFIGURATIONS -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+    <bean id="httpClientConnManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager"/>
+    <bean id="httpClientParams" class="org.apache.http.params.SyncBasicHttpParams"/>
+    <bean id="httpClient" class="org.apache.http.impl.client.ContentEncodingHttpClient">
+        <constructor-arg ref="httpClientConnManager"/>
+        <constructor-arg ref="httpClientParams"/>
+    </bean>
+    <bean id="httpClientFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+        <constructor-arg ref="httpClient"/>
+    </bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg ref="httpClientFactory"/>
+    </bean>
+</beans>

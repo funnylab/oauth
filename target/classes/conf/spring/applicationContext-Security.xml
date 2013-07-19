@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 	xmlns="http://www.springframework.org/schema/security"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:beans="http://www.springframework.org/schema/beans"
+		xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc
+		http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/security	
+		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http pattern="/styles/**" security="none"/>
+	
+	<http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
+		xmlns="http://www.springframework.org/schema/security">
+		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+		<anonymous enabled="false" />
+		<http-basic entry-point-ref="clientAuthenticationEntryPoint" />
+		<!-- include this only if you need to authenticate clients via request parameters -->
+		<custom-filter ref="clientCredentialsTokenEndpointFilter" after="BASIC_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+	</http>
+	
+	<http pattern="/photos/**" create-session="never" xmlns="http://www.springframework.org/schema/security"
+	entry-point-ref="oauthAuthenticationEntryPoint" access-decision-manager-ref="accessDecisionManager">
+		<anonymous enabled="false"/>
+		<intercept-url pattern="/photos" access="ROLE_USER,SCOPE_READ" />
+		<intercept-url pattern="/photos/trusted/**" access="ROLE_CLIENT" />
+		<intercept-url pattern="/photos/user/**" access="ROLE_USER" />
+		<intercept-url pattern="/photos/**" access="ROLE_USER,SCOPE_READ" />
+		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+	</http>
+	
+	<http auto-config="true"  use-expressions="true" >
+		<intercept-url pattern="/index.jsp" access="permitAll"/>
+		<intercept-url pattern="/login/loginPage.do" access="permitAll"/>
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"/>
+		<form-login login-page="/login/loginPage.do"/>
+		<logout invalidate-session="true" 
+				logout-success-url="/"  
+				logout-url="/logout"/>
+	</http>
+	<authentication-manager alias="authenticationManager">
+		 <authentication-provider user-service-ref="jdbcUserService"/>
+	</authentication-manager>
+	
+	<beans:bean id="jdbcUserService" class="com.bluedigm.funnylab.oauth.common.security.account.CustomJdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="enableGroups" value="true"/>
+	 	<beans:property name="enableAuthorities" value="false"/>
+	 	<beans:property name="groupAuthoritiesByUsernameQuery">
+	 		<beans:value>SELECT G.GROUP_ID, G.GROUP_NAME, GP.AUTHORITY
+								FROM USERS U
+								JOIN GROUP_MEMBERS UG ON U.USERNAME = UG.USERNMAE
+								JOIN GROUPS G ON UG.GROUP_ID = G.GROUP_ID
+								JOIN GROUP_AUTHORITIES GP ON G.GROUP_ID = GP.GROUP_ID
+								WHERE U.USERNAME = ?
+			</beans:value>
+	 	</beans:property>
+	</beans:bean>
+	 
+	 <beans:bean id="photoServices" class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoServiceImpl">
+		<beans:property name="photos">
+			<beans:list>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="1" />
+					<beans:property name="name" value="photo1.jpg" />
+					<beans:property name="userId" value="admin" />
+					<beans:property name="resourceURL" value="/images/resources/photo1.jpg" />
+				</beans:bean>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="2" />
+					<beans:property name="name" value="photo2.jpg" />
+					<beans:property name="userId" value="guest" />
+					<beans:property name="resourceURL" value="/images/resources/photo2.jpg" />
+				</beans:bean>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="3" />
+					<beans:property name="name" value="photo3.jpg" />
+					<beans:property name="userId" value="admin" />
+					<beans:property name="resourceURL" value="/images/resources/photo3.jpg" />
+				</beans:bean>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="4" />
+					<beans:property name="name" value="photo4.jpg" />
+					<beans:property name="userId" value="guest" />
+					<beans:property name="resourceURL" value="/images/resources/photo4.jpg" />
+				</beans:bean>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="5" />
+					<beans:property name="name" value="photo5.jpg" />
+					<beans:property name="userId" value="admin" />
+					<beans:property name="resourceURL" value="/images/resources/photo5.jpg" />
+				</beans:bean>
+				<beans:bean class="com.bluedigm.funnylab.oauth.photo.controller.rest.PhotoInfo">
+					<beans:property name="id" value="6" />
+					<beans:property name="name" value="photo6.jpg" />
+					<beans:property name="userId" value="guest" />
+					<beans:property name="resourceURL" value="/images/resources/photo6.jpg" />
+				</beans:bean>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" xmlns="http://www.springframework.org/schema/beans">
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+				<bean class="org.springframework.security.access.vote.RoleVoter" />
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+</beans:beans>
