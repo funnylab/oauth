@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<http pattern="/styles/**" security="none"/>
+	<http pattern="/resources/**" security="none"/>
 	
 	<http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
 		xmlns="http://www.springframework.org/schema/security">
