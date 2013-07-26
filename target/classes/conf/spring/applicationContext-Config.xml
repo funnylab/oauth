@@ -31,7 +31,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	<!--util:list id="messageBasenames" list-class="java.util.LinkedList">
 		<value>classpath:/conf/messages/graph/graph</value>
 		<value>classpath:/conf/messages/inner/inner</value>
-		<value>classpath:/conf/messages/console/console</value>		
+		<value>classpath:/conf/messages/console/console</value>		 
 	</util:list>
 	
 	<util:map id="dataSourceMapNames" key-type="com.skp.openplatform.core.framework.database.DataSourceType">
