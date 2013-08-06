@@ -59,11 +59,11 @@
 <form action="${jssc}" method="post">
 	<label for="j_username" class="control-label">Login</label>
 	<div class="controls">
-	<input id="j_username" name="j_username" size="20" maxlength="50" type="text" placeholder="User Name"/>
+	<input id="j_username" name="j_username" size="20" maxlength="50" type="text" placeholder="User Name" value="admin"/>
 	</div>
 	<label class="control-label" for="j_password">Password</label>
 	<div class="controls">
-	<input id="j_password" name="j_password" size="20" maxlength="50" type="password"  placeholder="Password"/>
+	<input id="j_password" name="j_password" size="20" maxlength="50" type="password"  placeholder="Password" value="1234"/>
 	</div>
 	<input type="submit" value="Login"  class="btn btn-small btn-primary"/>
 </form>
