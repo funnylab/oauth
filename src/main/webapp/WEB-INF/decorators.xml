@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views/decorators">
+
+	<excludes>
+		<pattern>/oauth/**</pattern>
+	</excludes>
+	
+	<decorator name="commonTop" page="common/topPage.jsp" />
+	<!-- 
+	<decorator name="commonLeft" page="common/leftPage.jsp" />
+	<decorator name="commonContend" page="common/contendPage.jsp" />
+	<decorator name="commonBottom" page="common/bottomPage.jsp" />
+	-->
+	<decorator name="commonFooter" page="common/footerPage.jsp" /> 
+	
+	<!-- <decorator name="noleft" page="noleftLayer.jsp">
+		<pattern>/develop/self-console/*</pattern>
+		<pattern>/my-center/member/*</pattern>
+	</decorator> -->
+	
+	<!-- <decorator name="consolePopUp" page="consolePopUp.jsp">
+		<pattern>/develop/self-console-popup/*</pattern>
+	</decorator> -->
+	
+	<!-- 사용자 회원가입 화면용 -->
+	<decorator name="member" page="memberLayer.jsp">
+		<!-- <pattern>/member/*</pattern>
+		<pattern>/my-center/member/withdrawal-confirm/</pattern> -->
+		<pattern>/login/**</pattern>
+	</decorator>
+	
+	<decorator name="main" page="mainLayer.jsp">
+		<pattern>/</pattern>
+	</decorator>
+	
+	
+	<!-- App 등록 화면용 -->
+	<!-- <decorator name="application" page="applicationLayer.jsp">
+		<pattern>/develop/app/*</pattern>
+		<pattern>/my-center/app-station/app-management/*</pattern>
+		<pattern>/my-center/app-station/tracking-log/*</pattern>
+		<pattern>/sdk/**</pattern>
+		<pattern>/foreign/auth/**</pattern>
+	</decorator> -->
+	
+	<!-- community  화면용 -->
+	<!-- <decorator name="community" page="communityLayer.jsp">
+		<pattern>/community/*</pattern>
+	</decorator> -->
+	
+	<!-- Mycenter 화면용 -->
+	<!-- <decorator name="mycenter" page="mycenterLayer.jsp">
+		<pattern>/my-center/**</pattern>
+	</decorator> -->
+	
+	<!-- Develop 화면용 -->
+	<!-- <decorator name="develop" page="developLayer.jsp">
+		<pattern>/openApiGuide/**</pattern>
+		<pattern>/apidoc/**</pattern>
+		<pattern>/opnapigud/*</pattern>
+		<pattern>/develop/**</pattern>
+		<pattern>/resource/*</pattern>
+	</decorator>
+	 -->
+	<!-- Search 화면용 -->
+	<!-- <decorator name="search" page="searchLayer.jsp">
+		<pattern>/search/*</pattern>
+	</decorator> -->
+	
+</decorators>

@@ -55,23 +55,22 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	 <!--  
+	
 	<context-param>
+		<!-- SiteMesh 설정 파일인 sitemesh.xml파일의 경로를 지정한다. -->
 		<param-name>sitemesh.configfile</param-name>
 		<param-value>/WEB-INF/sitemesh.xml</param-value>
 	</context-param>
-
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
-		<url-pattern>*.do</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
+		<url-pattern>*</url-pattern>
+		<dispatcher>REQUEST</dispatcher><!-- 요청이 REQUEST,FORWARD 일때 sitemesh 필터를 실행한다. -->
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	-->
 
 	<!-- UTF-8 설정 -->
 	<filter>
