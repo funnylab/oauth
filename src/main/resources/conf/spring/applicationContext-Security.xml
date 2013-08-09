@@ -13,6 +13,9 @@
 
 	<http pattern="/styles/**" security="none"/>
 	<http pattern="/resources/**" security="none"/>
+	<http pattern="/index.jsp" security="none"/>
+	<http pattern="/login/loginPage.do" security="none"/>
+	<http pattern="/login/oauthloginPage.do" security="none"/>
 	
 	<http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
 		xmlns="http://www.springframework.org/schema/security">
@@ -24,7 +27,14 @@
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
 	
-	<http pattern="/photos/**" create-session="never" xmlns="http://www.springframework.org/schema/security"
+	<http pattern="/oauth/authorize" auto-config="true">
+		<form-login login-page="/login/oauthloginPage.do"/>
+		<logout invalidate-session="true" 
+				logout-success-url="/"  
+				logout-url="/logout"/>
+	</http>
+	
+	<http pattern="/photos/**" create-session="never" xmlns="http://www.springframework.org/schema/security" auto-config="true"
 	entry-point-ref="oauthAuthenticationEntryPoint" access-decision-manager-ref="accessDecisionManager">
 		<anonymous enabled="false"/>
 		<intercept-url pattern="/photos" access="ROLE_USER,SCOPE_READ" />
@@ -32,17 +42,20 @@
 		<intercept-url pattern="/photos/user/**" access="ROLE_USER" />
 		<intercept-url pattern="/photos/**" access="ROLE_USER,SCOPE_READ" />
 		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
+		<form-login login-page="/login/oauthloginPage.do"/>
+		<logout invalidate-session="true" 
+				logout-success-url="/"  
+				logout-url="/logout"/>
 	</http>
 	
 	<http auto-config="true"  use-expressions="true" >
-		<intercept-url pattern="/index.jsp" access="permitAll"/>
-		<intercept-url pattern="/login/loginPage.do" access="permitAll"/>
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"/>
 		<form-login login-page="/login/loginPage.do"/>
 		<logout invalidate-session="true" 
 				logout-success-url="/"  
 				logout-url="/logout"/>
 	</http>
+	
 	<authentication-manager alias="authenticationManager">
 		 <authentication-provider user-service-ref="jdbcUserService"/>
 	</authentication-manager>

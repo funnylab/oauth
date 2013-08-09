@@ -2,7 +2,6 @@
 <decorators defaultdir="/WEB-INF/views/decorators">
 
 	<excludes>
-		<pattern>/oauth/**</pattern>
 	</excludes>
 	
 	<decorator name="commonTop" page="common/topPage.jsp" />
@@ -21,6 +20,12 @@
 	<!-- <decorator name="consolePopUp" page="consolePopUp.jsp">
 		<pattern>/develop/self-console-popup/*</pattern>
 	</decorator> -->
+	
+	<!-- 사용자 회원가입 화면용 -->
+	<decorator name="oauth" page="noneLayer.jsp">
+		<pattern>/login/oauthloginPage.do</pattern>
+		<pattern>/oauth/**</pattern>
+	</decorator>
 	
 	<!-- 사용자 회원가입 화면용 -->
 	<decorator name="member" page="memberLayer.jsp">

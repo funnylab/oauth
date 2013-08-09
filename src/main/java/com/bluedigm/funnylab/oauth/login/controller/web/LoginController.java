@@ -16,4 +16,10 @@ public class LoginController{
 		ModelAndView mav = new ModelAndView("/login/login");
 		return mav;
 	}
+	
+	@RequestMapping("/oauthloginPage")
+	public ModelAndView oauthLogin(){
+		ModelAndView mav = new ModelAndView("/login/oauthLogin");
+		return mav;
+	}
 }
