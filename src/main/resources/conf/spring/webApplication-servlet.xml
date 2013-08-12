@@ -53,7 +53,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-    <bean id="httpClientConnManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager"/>
+    <!-- <bean id="httpClientConnManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager"/>
     <bean id="httpClientParams" class="org.apache.http.params.SyncBasicHttpParams"/>
     <bean id="httpClient" class="org.apache.http.impl.client.ContentEncodingHttpClient">
         <constructor-arg ref="httpClientConnManager"/>
@@ -64,5 +64,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
     </bean>
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
         <constructor-arg ref="httpClientFactory"/>
-    </bean>
+    </bean> -->
 </beans>

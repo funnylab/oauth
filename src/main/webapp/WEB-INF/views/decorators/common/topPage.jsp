@@ -45,8 +45,8 @@ $(document).ready(function() {
 		            <li><a href="#">Separated link</a></li>
 		          </ul>
 		          </li>
-		          <li><a href="login/loginPage.do">Login</a></li>
-		          <li><a href="<c:url value="/logout"/>">Logout</a></li>
+		          <li><a href="<%=request.getContextPath()%>/login/loginPage.do">Login</a></li>
+		          <li><a href="<%=request.getContextPath()%><c:url value="/logout"/>">Logout</a></li>
 			      <%-- <li><div style="text-align: right;">
 			      <form action="<c:url value="/logout"/>">
 			      	<input type="submit" value="Logout" class="btn btn-small btn-primary">

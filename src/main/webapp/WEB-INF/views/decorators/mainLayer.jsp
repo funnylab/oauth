@@ -59,7 +59,6 @@
 			<page:applyDecorator name="commonTop" />
 			<!-- END:TOP Area -->
 		<!-- </header> -->
-		
 		<!-- <section id="wrapcont" class="index"> -->
 			<!-- START:MAIN Area -->
 			<decorator:body />
