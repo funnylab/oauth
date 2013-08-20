@@ -25,15 +25,15 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	<!-- PropertyPlaceholderConfigurer에 사용될 properties 파일을 등록 -->
 	<util:list id="propertyLocations" list-class="java.util.LinkedList">
 		<value>classpath:/conf/property/jdbc.properties</value>
+		<value>classpath:/conf/property/system.properties</value>
 	</util:list>
 
 	<!-- messageSource에 사용될 message properties 파일을 등록 -->
-	<!--util:list id="messageBasenames" list-class="java.util.LinkedList">
-		<value>classpath:/conf/messages/graph/graph</value>
-		<value>classpath:/conf/messages/inner/inner</value>
-		<value>classpath:/conf/messages/console/console</value>		 
+	<util:list id="messageBasenames" list-class="java.util.LinkedList">
+		<value>classpath:/conf/messages/oauth</value>
 	</util:list>
 	
+	<!--
 	<util:map id="dataSourceMapNames" key-type="com.skp.openplatform.core.framework.database.DataSourceType">
 	</util:map-->
 	
@@ -45,4 +45,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 		<property name="fileEncoding" value="UTF-8" />
 		<property name="order" value="1" />
 	</bean>
+	
+	<context:component-scan base-package="com.bluedigm.funnylab.oauth">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
 </beans>

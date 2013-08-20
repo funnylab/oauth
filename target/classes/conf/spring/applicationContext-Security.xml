@@ -15,6 +15,7 @@
 	<http pattern="/resources/**" security="none"/>
 	<http pattern="/login/loginPage.do" security="none"/>
 	<http pattern="/login/oauthloginPage.do" security="none"/>
+	<http pattern="/provider/**" security="none"/>
 	
 	<http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
 		xmlns="http://www.springframework.org/schema/security">
@@ -26,7 +27,8 @@
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
 	
-	<http pattern="/oauth/authorize" auto-config="true">
+	<http pattern="/oauth/authorize" auto-config="true" >
+		
 		<form-login login-page="/login/oauthloginPage.do"/>
 		<logout invalidate-session="true" 
 				logout-success-url="/"  
@@ -46,7 +48,7 @@
 	
 	<http auto-config="true"  use-expressions="true" >
 		<intercept-url pattern="/index.jsp" access="permitAll"/>
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/**" access="permitAll"/>
 		<form-login login-page="/login/loginPage.do" />
 		<logout invalidate-session="true" 
 				logout-success-url="/"  

@@ -26,46 +26,40 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	<!-- @Service단에서 Transaction 처리도 함께 해주기 위해 transaction manager의 order는 2로 내려준다. -->
 	<tx:annotation-driven proxy-target-class="true" order="2"/>
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<!--<property name="initSQL" value="${jdbc.initSQL}" />-->
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<!--<property name="jmxEnabled" value="${jdbc.jmxEnabled}" />-->
+		<!--<property name="jdbcInterceptors" value="${jdbc.jdbcInterceptors}" />-->
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+		<property name="logAbandoned" value="${jdbc.logAbandoned}" />
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.testOnReturn}" />
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}" /> 
+		<!--<property name="useEquals" value="${jdbc.useEquals}" />-->
+		<!--<property name="fairQueue" value="${jdbc.fairQueue}" />-->
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+		<property name="validationQueryTimeout" value="${jdbc.validationQueryTimeout}" />
+		<property name="validationQuery" value="${jdbc.validationQuery}" />   
 	</bean>
-
-	<!-- <bean id="transactionManager"
+	
+	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<tx:advice id="tokenAdvice">
-	  <tx:attributes>
-	    <tx:method name="*" isolation="REPEATABLE_READ" />
-	  </tx:attributes>
-	</tx:advice>
 	
-	<aop:config>
-	  <aop:pointcut id="tokenServicesExecutions" expression="execution(* org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices.*(..))" />
-	  <aop:advisor advice-ref="tokenAdvice" pointcut-ref="tokenServicesExecutions"/>
-	</aop:config> -->
-
-	<!-- Transaction AOP
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="search*" read-only="true"/>
-            <tx:method name="create*" propagation="REQUIRED" rollback-for="Throwable"/>
-            <tx:method name="modify*" propagation="REQUIRED" rollback-for="Throwable"/>
-            <tx:method name="remove*" propagation="REQUIRED" rollback-for="Throwable"/>
-            <tx:method name="save*" propagation="REQUIRED" rollback-for="Throwable"/>
-        </tx:attributes>
-    </tx:advice>
-
-	<aop:config>
-		<aop:pointcut id="requiredTx" expression="execution(* com.skp.openplatform..impl.*ServiceImpl.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
-	</aop:config> -->
-	<!-- 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/sql/SqlMapConfig.xml" /> 
@@ -75,5 +69,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	 -->
+
 </beans>

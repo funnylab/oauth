@@ -17,7 +17,7 @@
 </authz:authorize>
 </head>
 <body>
-<div class="container"">
+<div class="container">
 <%-- <authz:authorize ifAllGranted="ROLE_USER">
       <div style="text-align: right;">
       <form action="<c:url value="/logout"/>">
@@ -99,18 +99,15 @@
 		    </div>
 		  </div>
 	</div>
-
-<div class="pagination">
-  <ul>
-    <li><a href="#">Prev</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">Next</a></li>
-  </ul>
-</div>
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
 </div>
 </body>
 </html>

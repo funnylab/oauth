@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/common.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();
@@ -20,29 +15,20 @@ $(document).ready(function() {
 			Funney Lab Oauth Test
 			</div>
 		    <div class="container">
-		      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </a>
-		      <a class="brand" href="<%=request.getContextPath()%>/index.jsp">Oauth Test</a>
-		      <div class="nav-collapse">
-		        <ul class="nav nav-pills">
-		          <li class="active"><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
-		          <li><a href="#">menu1</a></li>
-		          <li><a href="#">menu2</a></li>
-		          <li><a href="#">menu6</a></li>
-		          <li><a href="#">menu7</a></li>
+		      <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">Oauth Test</a>
+		        <ul class="nav navbar-nav">
+		          <li><a href="#">API 소개</a></li>
+		          <li><a href="#">개발</a></li>
+		          <li><a href="#">커뮤니티</a></li>
 		          <li class="dropdown">
 		          	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				      Dropdown <span class="caret"></span>
+				      마이 앱 <span class="caret"></span>
 				    </a>
 				   <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
+		            <li><a href="#">앱 관리</a></li>
+		            <li><a href="<%=request.getContextPath()%>/provider/getProviderList.do">프로바이더 관리</a></li>
 		            <li class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
+		            <li><a href="#">사용자 정보 관리</a></li>
 		          </ul>
 		          </li>
 		          <li><a href="<%=request.getContextPath()%>/login/loginPage.do">Login</a></li>
@@ -55,10 +41,7 @@ $(document).ready(function() {
 		          <li class="dropdown"> 
 		        </ul>
 		        
-		      </div><!--/.nav-collapse -->
 		    </div>
 	    </div>
 	</div>
 </div>
-</body>
-</html>

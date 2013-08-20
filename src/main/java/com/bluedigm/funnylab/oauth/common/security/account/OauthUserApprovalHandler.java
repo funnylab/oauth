@@ -59,14 +59,15 @@ private Collection<String> autoApproveClients = new HashSet<String>();
 		if (useTokenServices && super.isApproved(authorizationRequest, userAuthentication)) {
 			return true;
 		}
-
+		System.out.println("aaaaaa");
 		if (!userAuthentication.isAuthenticated()) {
 			return false;
 		}
-
+		System.out.println("bbbbbbb");
 		String flag = authorizationRequest.getApprovalParameters().get(OAuth2Utils.USER_OAUTH_APPROVAL);
 		boolean approved = flag != null && flag.toLowerCase().equals("true");
 
+		System.out.println("cccccccc");
 		return approved
 				|| (authorizationRequest.getResponseTypes().contains("token") && autoApproveClients
 						.contains(authorizationRequest.getClientId()));

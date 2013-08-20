@@ -4,21 +4,12 @@
 <!-- [s]include:footer -->
 <footer class="modal-footer">
 	<div class="container">
-		<div class="navbar">
-			    <div class="container">
-			      <a class="brand" href="index.jsp">Bluedigm.FunneyLab</a>
-			      <div class="navbar">
-			        <ul class="nav navbar-pills">
-			          <li><a href="#">BtnMenu1</a></li>
-			          <li><a href="#">BtnMenu2</a></li>
-			          <li><a href="#">BtnMenu3</a></li>
-			          <li><a href="#">BtnMenu4</a></li>
-			          <li><a href="#">BtnMenu5</a></li>
-			          <li><a href="#">BtnMenu6</a></li>
-			        </ul>
-			      </div><!--/.nav-collapse -->
-			    </div>
-		</div>
+		<a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp">Funney Lab Oauth Test</a>
+		<ul class="nav navbar-nav">
+			<li><a href="#">어쩌구 저쩌구</a></li>
+			<li><a href="#">이랫다 저랙다</a></li>
+			<li><a href="#">contact us</a></li>
+		</ul>
 	</div>
 </footer>
 <!-- [e]include:footer -->

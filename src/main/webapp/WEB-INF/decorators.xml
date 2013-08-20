@@ -5,8 +5,8 @@
 	</excludes>
 	
 	<decorator name="commonTop" page="common/topPage.jsp" />
-	<!-- 
 	<decorator name="commonLeft" page="common/leftPage.jsp" />
+	<!-- 
 	<decorator name="commonContend" page="common/contendPage.jsp" />
 	<decorator name="commonBottom" page="common/bottomPage.jsp" />
 	-->
@@ -32,6 +32,13 @@
 		<!-- <pattern>/member/*</pattern>
 		<pattern>/my-center/member/withdrawal-confirm/</pattern> -->
 		<pattern>/login/**</pattern>
+	</decorator>
+	
+	<!-- 프로바이더 관리화면 -->
+	<decorator name="provier" page="providerLayer.jsp">
+		<!-- <pattern>/member/*</pattern>
+		<pattern>/my-center/member/withdrawal-confirm/</pattern> -->
+		<pattern>/provider/**</pattern>
 	</decorator>
 	
 	<decorator name="main" page="mainLayer.jsp">
