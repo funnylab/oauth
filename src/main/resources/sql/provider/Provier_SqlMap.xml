@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bliedigm.funnylab.oauth.provider">
+
+	<select id="selectProviders" resultType="String">
+		<![CDATA[
+			SELECT  /* SocialListDAO.selectProviders | chung hun oh | 2012-11-13 */   PVD_NM as socialName
+			FROM SN_PVD A 
+		]]>
+	</select>
+	
+</mapper>
