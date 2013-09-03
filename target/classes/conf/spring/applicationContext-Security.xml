@@ -11,12 +11,6 @@
 		http://www.springframework.org/schema/security	
 		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<http pattern="/styles/**" security="none"/>
-	<http pattern="/resources/**" security="none"/>
-	<http pattern="/login/loginPage.do" security="none"/>
-	<http pattern="/login/oauthloginPage.do" security="none"/>
-	<http pattern="/provider/**" security="none"/>
-	
 	<http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
 		xmlns="http://www.springframework.org/schema/security">
 		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
@@ -38,10 +32,10 @@
 	<http pattern="/photos/**" create-session="never" xmlns="http://www.springframework.org/schema/security"
 	entry-point-ref="oauthAuthenticationEntryPoint" access-decision-manager-ref="accessDecisionManager">
 		<anonymous enabled="false"/>
-		<intercept-url pattern="/photos" access="ROLE_USER,SCOPE_READ" />
+		<intercept-url pattern="/photos" access="ROLE_USER" />
 		<intercept-url pattern="/photos/trusted/**" access="ROLE_CLIENT" />
 		<intercept-url pattern="/photos/user/**" access="ROLE_USER" />
-		<intercept-url pattern="/photos/**" access="ROLE_USER,SCOPE_READ" />
+		<intercept-url pattern="/photos/**" access="ROLE_USER" />
 		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
@@ -120,7 +114,9 @@
 	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased" xmlns="http://www.springframework.org/schema/beans">
 		<constructor-arg>
 			<list>
-				<bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+				<bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter">
+					<!-- <beans:constructor-arg ref="dataSource" /> -->
+				</bean>
 				<bean class="org.springframework.security.access.vote.RoleVoter" />
 				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
 			</list>

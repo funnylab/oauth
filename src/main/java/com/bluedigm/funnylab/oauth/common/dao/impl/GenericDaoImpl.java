@@ -65,8 +65,8 @@ public class GenericDaoImpl<T,PK extends Serializable> extends SqlSessionDaoSupp
 	public int insert(String statement, T object) {
 		
 		if(object instanceof AbstractObject){
-			((AbstractObject)object).setCreateSqlID(statement);
-			((AbstractObject)object).setModifySqlID(statement);
+			((AbstractObject)object).setCreateSqlId(statement);
+			((AbstractObject)object).setModifySqlId(statement);
 		}else{
 		}
 		return getSqlSession().insert(statement, object);
@@ -78,7 +78,7 @@ public class GenericDaoImpl<T,PK extends Serializable> extends SqlSessionDaoSupp
 	public int update(String statement, T object) {
 		
 		if(object instanceof AbstractObject){
-			((AbstractObject)object).setModifySqlID(statement);
+			((AbstractObject)object).setModifySqlId(statement);
 		}else{
 		}
 		return getSqlSession().update(statement, object);

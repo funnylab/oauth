@@ -2,31 +2,42 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="authz" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html >
 <title></title>
 <head>
 <script type="text/javascript">
 $(document).ready(function(){
-	 $('#provider-form').validate({
+
+	$('#provider-form').validate({
 	  rules: {
 		  serviceName: {
-	      minlength: 3,
-	      required: true
+	      minlength: 5,
+	      required: true,
+	      lettersonly : true
 	    },
 	    serviceDesc: {
-	      required: true
+	    	required: true
+	    },
+	    scope: {
+	    	required: true,
+	    	dashunderline: true,
+	    	commaseparted : true
+	    }
+	    ,
+	    grantTypes: {
+	    	requireleastone: true
 	    }
 	  },
 	  highlight: function(element) {
 	    $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
 	  },
 	  success: function(element) {
-	    element
-	    .closest('.form-group').removeClass('has-error').addClass('has-success');
+	    element.closest('.form-group').removeClass('has-error').addClass('has-success');
 	    //.text('OK!').addClass('valid')
 	  }
-	 }); 
+	 });
 	
 });
 </script>
@@ -35,52 +46,39 @@ $(document).ready(function(){
 <h2>Provider Service 등록</h2>
 <form id="provider-form" class="form-horizontal" role="form" method="post" action="<%=request.getContextPath()%>/provider/createProvider.do">
   <div class="form-group">
-    <label for="serviceName" class="col-lg-2 control-label">서비스 명</label>
-    <div class="col-lg-10">
-      <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="서비스 이름을 입력합니다.">
+    <label for="serviceName" class="col-lg-2 control-label">Service Name</label>
+    <div class="col-lg-6">
+      <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="Service Name">
       <input type="text" style="display: none;" />
     </div>
   </div>
   <div class="form-group">
-    <label for="serviceDesc" class="col-lg-2 control-label">서비스 설명</label>
-    <div class="col-lg-10">
-      <textarea  type="text" class="form-control" id="serviceDesc" name="serviceDesc" rows="3" placeholder="서비스 설명을 입력합니다."></textarea>
+    <label for="serviceDesc" class="col-lg-2 control-label">Service Desc</label>
+    <div class="col-lg-6">
+      <textarea  type="text" class="form-control" id="serviceDesc" name="serviceDesc" rows="3" placeholder="Service Desc"></textarea>
     </div>
   </div>
-  <!-- <div class="form-group">
-    <label for="resourceId" class="col-lg-2 control-label">리소스 ID</label>
-    <div class="col-lg-10">
-      <input type="text" class="form-control" id=""serviceName"" placeholder="리소스 ID를 입력합니다.">
-    </div>
-  </div> -->
   <div class="form-group">
-  	<label for="resourceId" class="col-lg-2 control-label">Scope</label>
-    <div class="col-lg-10">
-		<label class="checkbox-inline">
-			<input type="checkbox" id="scopeRead" value="Y" checked="checked"> Read
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" id="scopeWrite" value="Y"  checked="checked"> Wirte
-		</label>
+  	<label for="scope" class="col-lg-2 control-label">Scope</label>
+    <div class="col-lg-6">
+      <textarea  type="text" class="form-control" id="scope" name="scope" rows="3" placeholder="Scope List(Comma-separted)"></textarea>
+      <p class="help-block">Comma-separted list of string. ex>read_article,update_profile</p>
     </div>
   </div>
   <div class="form-group">
   	<label for="authGrantType" class="col-lg-2 control-label">Grant Types</label>
-	<div class="col-lg-10">
-		<label class="checkbox-inline">
-			<input id="implicit" type="checkbox" value="Y"> implicit
-		</label>
-		<label class="checkbox-inline">
-			<input id="authorization_code" type="checkbox" value="Y"> authorization_code
-		</label>
+	<div class="col-lg-5">
+		<tag:granttype />
 	</div>
   </div>
   <div class="form-group">
   	<label for="refreshToken" class="col-lg-2 control-label">Refresh Token</label>
-	<div class="col-lg-10">
+	<div class="col-lg-6">
+	<div class="checkbox">
 		<label class="checkbox-inline">
-			<input id="refreshToken" type="checkbox" value="Y"> Use the Refresh Token 
+			<input id="refreshTokenUseYn" type="checkbox" name="refreshTokenUseYn" value="Y"> Use the Refresh Token 
 		</label>
+	</div>
 	</div>
   </div>
   <div class="form-group">

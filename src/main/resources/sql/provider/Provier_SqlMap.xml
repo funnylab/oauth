@@ -3,11 +3,157 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bliedigm.funnylab.oauth.provider">
 
-	<select id="selectProviders" resultType="String">
+	<select id="selectServiceList" parameterType="ServiceList" resultType="Service">
 		<![CDATA[
-			SELECT  /* SocialListDAO.selectProviders | chung hun oh | 2012-11-13 */   PVD_NM as socialName
-			FROM SN_PVD A 
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectServiceList | Hanjong Kim | 2013-08-21 */   
+					service_id as serviceId,
+					user_id as userId,
+					service_name as serviceName, 
+					service_desc as serviceDesc, 
+					refresh_token_use_yn as refreshTokenUseYn, 
+					create_id as createId, 
+					create_date_time as createDateTime, 
+					modify_id as modifyId, 
+					modify_date_time as modifyDateTime
+			FROM 	service_details
+			ORDER BY service_id desc
+			LIMIT   #{firstRecordIndex}, #{lastRecordIndex}
 		]]>
 	</select>
 	
+	<select id="selectServiceTotalCnt" parameterType="ServiceList" resultType="Integer">
+		<![CDATA[
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectServiceTotalCnt | Hanjong Kim | 2013-08-21 */   
+					count(*)
+			FROM 	service_details
+		]]>
+	</select>
+	
+	<select id="selectService" parameterType="ServiceList" resultType="Service">
+		<![CDATA[
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectService | Hanjong Kim | 2013-08-21 */   
+					service_id as serviceId,
+					user_id as userId,
+					service_name as serviceName, 
+					service_desc as serviceDesc, 
+					refresh_token_use_yn as refreshTokenUseYn, 
+					create_id as createId, 
+					create_date_time as createDateTime, 
+					modify_id as modifyId, 
+					modify_date_time as modifyDateTime
+			FROM 	service_details
+			WHERE 	service_id = #{serviceId}
+		]]>
+	</select>
+	
+	<insert id="insertService" parameterType="Service">
+		<![CDATA[
+			INSERT /* com.bliedigm.funnylab.oauth.provider.insertService | Hanjong Kim | 2013-08-21 */
+			INTO 	service_details (
+					user_id,
+					service_name, 
+					service_desc, 
+					refresh_token_use_yn, 
+					create_id, 
+					create_sql_id, 
+					create_date_time, 
+					modify_id, 
+					modify_sql_id, 
+					modify_date_time
+					) 
+			VALUES (
+					#{userId},
+					#{serviceName},
+					#{serviceDesc},
+					#{refreshTokenUseYn},
+					#{userId},
+					#{createSqlId},
+					NOW(),
+					#{userId},
+					#{modifySqlId},
+					NOW()
+					)
+			
+		]]>
+		<selectKey keyProperty="serviceId" resultType="Integer" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	
+	<update id="updateService" parameterType="Service">
+		<![CDATA[
+			UPDATE  service_details	/* com.bliedigm.funnylab.oauth.provider.insertService | Hanjong Kim | 2013-08-21 */
+			SET		service_name=#{serviceName}, 
+					service_desc=#{serviceDesc}, 
+					refresh_token_use_yn=#{refreshTokenUseYn}, 
+					modify_id=#{userId}, 
+					modify_sql_id=#{modifySqlId}, 
+					modify_date_time=NOW()
+			WHERE 	service_Id = #{serviceId}
+			
+		]]>
+	</update>
+	
+	<insert id="insertScope" parameterType="Service">
+		<![CDATA[
+			INSERT /* com.bliedigm.funnylab.oauth.provider.insertScope | Hanjong Kim | 2013-08-21 */
+			INTO 	service_scope_mapper (
+					service_id, 
+					scope
+					) 
+			VALUES (
+					#{serviceId},
+					#{scope}
+					)
+			
+		]]>
+		<selectKey keyProperty="scopeId" resultType="Integer" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	<delete id="deleteScope" parameterType="Service">
+		DELETE 	FROM service_scope_mapper
+		     	WHERE service_id = #{serviceId}
+	</delete>
+	<insert id="insertGrantType" parameterType="Service">
+		<![CDATA[
+			INSERT /* com.bliedigm.funnylab.oauth.provider.insertGrantType | Hanjong Kim | 2013-08-21 */
+			INTO 	service_grant_type_mapper (
+					service_id, 
+					grant_type
+					) 
+			VALUES (
+					#{serviceId},
+					#{grantType}
+					)
+			
+		]]>
+		<selectKey keyProperty="grantTypeId" resultType="Integer" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	<delete id="deleteGrantType" parameterType="Service">
+		DELETE 	FROM service_grant_type_mapper
+		     	WHERE service_id = #{serviceId}
+	</delete>
+	
+	<select id="selectServiceScopeist" parameterType="Service" resultType="Service">
+		<![CDATA[
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectServiceScopeist | Hanjong Kim | 2013-08-21 */   
+					service_id as serviceId, 
+					scope as scope
+			FROM 	service_scope_mapper
+			WHERE 	service_id = #{serviceId}
+		]]>
+	</select>
+	
+	<select id="selectServiceGrantTypeist" parameterType="Service" resultType="Service">
+		<![CDATA[
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectServiceGrantTypeist | Hanjong Kim | 2013-08-21 */   
+					service_id as serviceId, 
+					grant_type as grantType
+			FROM 	service_grant_type_mapper
+			WHERE 	service_id = #{serviceId}
+		]]>
+	</select>
 </mapper>

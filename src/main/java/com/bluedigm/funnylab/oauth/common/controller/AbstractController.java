@@ -2,13 +2,11 @@ package com.bluedigm.funnylab.oauth.common.controller;
 
 import java.util.Locale;
 
-import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.RequestAttributes;
@@ -32,10 +30,6 @@ public class AbstractController {
 	@Autowired
 	protected MessageSource messageSource = null;
 
-	/** The Message accessor. */
-	@Resource
-	private MessageSourceAccessor accessor;
-	
 	/**
 	 * 리소스 번들에서 메시지 값 조회
 	 * 

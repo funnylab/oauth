@@ -615,3 +615,37 @@ jQuery.validator.addMethod("extension", function(value, element, param) {
 	param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
 	return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
 }, jQuery.format("Please enter a value with a valid extension."));
+
+// 지정된 CheckBox 중 최소 하나 선택
+jQuery.validator.addMethod("requireleastone",function(value, element){
+	var checkbx = $('input[name='+$(element).attr('name')+']');
+	return $(checkbx).is(':checked');
+},  jQuery.format("Please check at least one box."));
+
+// 콤마 구분자로 분리된 Scope 목록
+jQuery.validator.addMethod("commaseparted", function(value, element) {
+	if(value.match(/^[a-zA-Z-_]*(,[a-zA-Z-_]*)*$/)==null){
+		return false;
+	}else{
+		return true;
+	}
+}, "You need Comma-separted list of strings");
+
+//콤마 구분자로 분리된 Scope 목록
+jQuery.validator.addMethod("commaseparted", function(value, element) {
+	if(value.match(/^[a-zA-Z-_]*(,[a-zA-Z-_\n]*)*$/)==null){
+		return false;
+	}else{
+		return true;
+	}
+}, "You need Comma-separted list of strings");
+
+//콤마 구분자로 분리된 Scope 목록
+jQuery.validator.addMethod("dashunderline", function(value, element) {
+	if(value.match(/^[a-z-_,\n]*$/)==null){
+		return false;
+	}else{
+		return true;
+	}
+}, "Lower case Alphabet, Dash, UnderLine, Comma only please");
+

@@ -74,6 +74,12 @@
 
 	<oauth:web-expression-handler id="oauthWebExpressionHandler" />
 	
-	
-	
+	<!-- 
+	<bean id="commonTag" class="com.bluedigm.funnylab.oauth.common.tag.CommonTag">
+		<constructor-arg name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="commonTagService" class="com.bluedigm.funnylab.oauth.common.tag.service.impl.CommonTagServiceImpl">
+		<property name="commonTagDao" ref="commonTagDao"/>
+	</bean>
+	<bean id="commonTagDao" class="com.bluedigm.funnylab.oauth.common.tag.dao.impl.CommonTagDaoImpl"/> -->
 </beans>

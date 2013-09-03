@@ -1386,7 +1386,7 @@ pre code {
 }
 
 table {
-  max-width: 100%;
+  max-width: 950px;
   background-color: transparent;
 }
 
@@ -4199,6 +4199,7 @@ button.close {
 .modal-dialog {
   z-index: 1050;
   width: auto;
+  height: 100%;
   padding: 10px;
   margin-right: auto;
   margin-left: auto;
@@ -4214,6 +4215,7 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
+  margin-top: 15%
 }
 
 .modal-backdrop {
@@ -4240,6 +4242,7 @@ button.close {
   min-height: 16.428571429px;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+  background-color: #e7e7e7;
 }
 
 .modal-header .close {
@@ -5692,4 +5695,51 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+/* 
+
+
+*/
+.text-oversize1 {
+  width : 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize2 {
+  width : 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize3 {
+  width : 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize4 {
+  width : 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize5 {
+  width : 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize6 {
+  width : 350px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-oversize7 {
+  width : 400px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

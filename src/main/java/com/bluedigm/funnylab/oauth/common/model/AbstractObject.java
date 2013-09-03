@@ -35,49 +35,49 @@ public abstract class AbstractObject {
 
 	@XmlTransient
 	@JsonIgnore
-	private String createID;
+	private String createId;
 	@XmlTransient
 	@JsonIgnore
-	private String createSqlID;
+	private String createSqlId;
 	@XmlTransient
 	@JsonIgnore
 	private Timestamp createDateTime;
 	@XmlTransient
 	@JsonIgnore
-	private String modifyID;
+	private String modifyId;
 	@XmlTransient
 	@JsonIgnore
-	private String modifySqlID;
+	private String modifySqlId;
 	@XmlTransient
 	@JsonIgnore
 	private Timestamp modifyDateTime;
 	
 	/**
-	 * @return the createID
+	 * @return the createId
 	 */
-	public String getCreateID() {
-		return createID;
+	public String getCreateId() {
+		return createId;
 	}
 
 	/**
-	 * @param createID the createID to set
+	 * @param createId the createId to set
 	 */
-	public void setCreateID(String createID) {
-		this.createID = createID;
+	public void setCreateId(String createId) {
+		this.createId = createId;
 	}
 
 	/**
-	 * @return the createSqlID
+	 * @return the createSqlId
 	 */
-	public String getCreateSqlID() {
-		return createSqlID;
+	public String getCreateSqlId() {
+		return createSqlId;
 	}
 
 	/**
-	 * @param createSqlID the createSqlID to set
+	 * @param createSqlId the createSqlId to set
 	 */
-	public void setCreateSqlID(String createSqlID) {
-		this.createSqlID = createSqlID;
+	public void setCreateSqlId(String createSqlId) {
+		this.createSqlId = createSqlId;
 	}
 
 	/**
@@ -95,31 +95,31 @@ public abstract class AbstractObject {
 	}
 
 	/**
-	 * @return the modifyID
+	 * @return the modifyId
 	 */
-	public String getModifyID() {
-		return modifyID;
+	public String getModifyId() {
+		return modifyId;
 	}
 
 	/**
-	 * @param modifyID the modifyID to set
+	 * @param modifyId the modifyId to set
 	 */
-	public void setModifyID(String modifyID) {
-		this.modifyID = modifyID;
+	public void setModifyId(String modifyId) {
+		this.modifyId = modifyId;
 	}
 
 	/**
-	 * @return the modifySqlID
+	 * @return the modifySqlId
 	 */
-	public String getModifySqlID() {
-		return modifySqlID;
+	public String getModifySqlId() {
+		return modifySqlId;
 	}
 
 	/**
-	 * @param modifySqlID the modifySqlID to set
+	 * @param modifySqlId the modifySqlId to set
 	 */
-	public void setModifySqlID(String modifySqlID) {
-		this.modifySqlID = modifySqlID;
+	public void setModifySqlId(String modifySqlId) {
+		this.modifySqlId = modifySqlId;
 	}
 
 	/**

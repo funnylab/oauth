@@ -1,8 +1,17 @@
 package com.bluedigm.funnylab.oauth.provider.service;
 
-import com.bluedigm.funnylab.oauth.provider.model.ProviderList;
+import java.util.List;
+
+import com.bluedigm.funnylab.oauth.provider.model.Service;
+import com.bluedigm.funnylab.oauth.provider.model.ServiceList;
 
 public interface ProviderService{
 
-	ProviderList  getProviderList(ProviderList providerList);
+	List<Service>  getServiceList(ServiceList serviceList);
+	int getServiceTotalCnt(ServiceList serviceList);
+	Service  getService(Service service);
+	List<Service> 	getServiceScopeList(Service service);
+	List<Service>  getServiceGrantTypeList(Service service);
+	int createService(Service service);
+	int modifyService(Service service);
 }

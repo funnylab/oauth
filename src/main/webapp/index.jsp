@@ -1,3 +1,4 @@
+<%@ page language="java"      contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="authz" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -31,8 +32,9 @@
         <script type='text/javascript' src='photos?callback=pictureDisplay&format=json'></script>
       </p>
 </authz:authorize>
-    
-    
+ <h3>commonTag</h3>
+ <code:common id="idsss" inputType="select" groupId="123123"/>
+ 
 <br><br><br><br><br>
 <!-- bootStrap Test -->
 <h3>Twitter bootStrap Test Sample</h3>

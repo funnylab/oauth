@@ -17,18 +17,24 @@
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap/bootstrap.css" rel="stylesheet" media="screen">
 	<style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 80px;
         padding-bottom: 40px;
       }
     </style>
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
-	
+	<%-- <link href="<%=request.getContextPath()%>/resources/css/jquery/jquery-ui-1.10.3.custom.css" rel="stylesheet"/> --%>
+  
     <!-- Jquery JS -->
     <script src="<%=request.getContextPath()%>/resources/js/jquery/jquery-2.0.3.js"></script>
+    <%-- <script src="<%=request.getContextPath()%>/resources/js/jquery/jquery-ui-1.10.3.custom.js"></script> --%>
 
+
+    <!-- Jquery Paging -->
+    <script src="<%=request.getContextPath()%>/resources/js/jquery/jquery.paging.js"></script>
+    
     <!-- Jquery validate JS -->
-    <script src="<%=request.getContextPath()%>/resources/js/jquery/additional-methods.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery/jquery.validate.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery/additional-methods.js"></script>
 
 	<!-- Twitter Bootstrap JS-->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap/bootstrap.js"></script>
@@ -51,42 +57,28 @@
 <!-- page script -->
 </head>
 <body onload="<decorator:getProperty property="body.onload" />">
-<!-- [s]웹접근성 바로가기 영역06/24 -->
-<%-- <div id="skip_nav">
-	<a href="#wrapcont"><spring:message code="common.link.content" /></a>
-	<a href="#totalmenu"><spring:message code="common.link.totalmenu" /></a>
-</div> --%>
-<!-- [e]웹접근성 바로가기 영역06/24 -->
-	<!-- <div id="wrapbox">
-		<header id="wraptop"> -->
-			<!-- START:TOP Area -->
-			<page:applyDecorator name="commonTop" />
-			<!-- END:TOP Area -->
-		<!-- </header> -->
-		<div class="container" style="height: 500px;">
+	<!-- START:TOP Area -->
+	<page:applyDecorator name="commonTop" />
+	<!-- END:TOP Area -->
+	
+	<div class="container">
+		<div class="row">
 			<!-- START:LEFT Area -->
-			<div class="row">
-			<div class="col-md-2" style="margin-top: 25px;">
-			<page:applyDecorator name="commonLeft" />
+			<div class="col-md-2">
+				<page:applyDecorator name="commonLeft" />
 			</div>
 			<!-- END:LEFT Area -->
+	
 			<!-- START:MAIN Area -->
-			<div class="col-md-8">
-			<decorator:body />
-			</div>
+			<div class="col-md-10">
+				<decorator:body />
 			</div>
 			<!-- END:MAIN Area -->
 		</div>
-		
-		<!-- START:BOTTOM Area-->
-			<!-- START:TOTALMENU Area -->
-			<%-- <page:applyDecorator name="commonBottom" /> --%>
-			<!-- END:TOTALMENU Area -->
-		
-			<!-- START:FOOTER Area -->
-			<page:applyDecorator name="commonFooter" />
-			<!-- END:FOOTER Area -->
-		<!-- END:BOTTOM Area -->   
-	<!-- </div> -->
+	</div>
+	
+	<!-- START:FOOTER Area -->
+	<page:applyDecorator name="commonFooter" />
+	<!-- END:FOOTER Area -->
 </body>
 </html>

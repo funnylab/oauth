@@ -14,7 +14,9 @@
   -->
   
  <typeAliases>
-  <!-- <typeAlias type="com.skp.openplatform.component.social.common.model.BaseRule" alias="BaseRule"/> -->
+ 	<typeAlias type="com.bluedigm.funnylab.oauth.common.tag.model.CommonCode" alias="commonCode"/>
+ 	<typeAlias type="com.bluedigm.funnylab.oauth.provider.model.Service" alias="Service"/>
+ 	<typeAlias type="com.bluedigm.funnylab.oauth.provider.model.ServiceList" alias="ServiceList"/>
  </typeAliases>
  
 </configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bliedigm.funnylab.oauth.commonTag">
+
+	<select id="selectCommonCodeList" parameterType="commonCode" resultType="commonCode">
+		<![CDATA[
+			SELECT  /* com.bliedigm.funnylab.oauth.provider.selectProviders | Hanjong Kim | 2013-08-21 */   
+					user_id as userId,
+					service_name as serviceName, 
+					service_desc as serviceDesc, 
+					read_use_yn as readUseYn, 
+					write_use_yn as writeUseYn, 
+					implicit_use_yn implicitUseYn, 
+					authorization_code_use_yn as authorizationCodeUseYn, 
+					refresh_token_use_yn as refreshTokenUseYn, 
+					create_id as createId, 
+					create_date_time as createDateTime, 
+					modify_id as modifyId, 
+					modify_date_time as modifyDateTime
+			FROM 	provider_details
+		]]>
+	</select>
+</mapper>

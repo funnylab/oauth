@@ -26,6 +26,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 	<util:list id="propertyLocations" list-class="java.util.LinkedList">
 		<value>classpath:/conf/property/jdbc.properties</value>
 		<value>classpath:/conf/property/system.properties</value>
+		<value>classpath:/conf/property/paging.properties</value>
 	</util:list>
 
 	<!-- messageSource에 사용될 message properties 파일을 등록 -->
@@ -52,4 +53,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>
